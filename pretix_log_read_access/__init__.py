@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.utils.translation import gettext_lazy
 
 try:
@@ -23,6 +24,8 @@ class PluginApp(PluginConfig):
 
     def ready(self):
         from . import signals  # NOQA
+        settings.MIDDLEWARE.append('pretix_log_read_access.middleware.LogMiddleware')
+        settings.CORE_MODULES.add('pretix_log_read_access')
 
 
 default_app_config = "pretix_log_read_access.PluginApp"
