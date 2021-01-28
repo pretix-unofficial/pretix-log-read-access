@@ -9,8 +9,9 @@ Access to list of orders / search is not logged.
 How to use
 ----------
 
-- Install the plugin on the server, e.g. from ``pip install git+https://github.com/pretix-unofficial/pretix-hide-sold-out.git@main#egg=pretix-hide-sold-out``
+- Install the plugin on the server, e.g. from ``pip install pretix-log-read-access``
 
+  git+https://github.com/pretix-unofficial/pretix-hide-sold-out.git@main#egg=pretix-hide-sold-out``
 - Done. There is **no** need to enable this plugin on event level. For security reasons, it's always enabled system-wide
   so no-one can temporarily disable it to hide their actions.
 
