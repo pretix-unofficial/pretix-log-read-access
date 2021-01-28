@@ -11,7 +11,8 @@ How to use
 
 - Install the plugin on the server, e.g. from ``pip install git+https://github.com/pretix-unofficial/pretix-hide-sold-out.git@main#egg=pretix-hide-sold-out``
 
-- Done. There is **no** need to enable this plugin on event level. For security reasons, it's always enabled system-wide.
+- Done. There is **no** need to enable this plugin on event level. For security reasons, it's always enabled system-wide
+  so no-one can temporarily disable it to hide their actions.
 
 Caveats:
 
@@ -25,6 +26,9 @@ Caveats:
 
 - API access is only logged when performed through a web-based user session, API requests using API tokens, OAuth
   applications or devices are **not logged**.
+
+- Searching for orders with a specific reply to a question are only allowed for super-users in admin mode since this
+  could otherwise lead to data leaks.
 
 Development setup
 -----------------

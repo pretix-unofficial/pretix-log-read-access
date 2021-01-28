@@ -1,5 +1,6 @@
 from datetime import timedelta
 
+from django.core.exceptions import PermissionDenied
 from django.urls import get_script_prefix, resolve
 from django.utils.timezone import now
 from django_scopes import scopes_disabled
@@ -27,6 +28,9 @@ class LogMiddleware:
             url = resolve(request.path)
         except:
             return
+
+        if hasattr(request, 'event') and url.url_name == 'event.orders':
+            self._check_order_list(request)
 
         if hasattr(request, 'event') and 'code' in url.kwargs:
             try:
@@ -109,3 +113,8 @@ class LogMiddleware:
         data.pop("ajax", None)
         data.pop("csrfmiddlewaretoken", None)
         object.log_action('pretix_log_read_access.export', data=data, user=user, auth=auth)
+
+    def _check_order_list(self, request):
+        for k, v in request.GET.items():
+            if v and (k == 'answer' or 'question_' in k) and not request.user.has_active_staff_session(request.session.session_key):
+                raise PermissionDenied('This type of search is only allowed for system administrators.')
