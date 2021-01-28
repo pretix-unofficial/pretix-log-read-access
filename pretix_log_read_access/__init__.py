@@ -16,7 +16,10 @@ class PluginApp(PluginConfig):
     class PretixPluginMeta:
         name = gettext_lazy("Log read-only order data access")
         author = "pretix team"
-        description = gettext_lazy("This plugin logs any access to extended information (e.g. question answers) of a specific order, as well as all export jobs. No warranty for completeness given.")
+        description = gettext_lazy(
+            "This plugin logs any access to extended information (e.g. question answers) of a specific order, "
+            "as well as all export jobs. No warranty for completeness given."
+        )
         visible = False
         version = __version__
         category = "FEATURE"
@@ -24,8 +27,9 @@ class PluginApp(PluginConfig):
 
     def ready(self):
         from . import signals  # NOQA
-        settings.MIDDLEWARE.append('pretix_log_read_access.middleware.LogMiddleware')
-        settings.CORE_MODULES.add('pretix_log_read_access')
+
+        settings.MIDDLEWARE.append("pretix_log_read_access.middleware.LogMiddleware")
+        settings.CORE_MODULES.add("pretix_log_read_access")
 
 
 default_app_config = "pretix_log_read_access.PluginApp"

@@ -28,7 +28,8 @@ cmdclass = {"build": CustomBuild}
 setup(
     name="pretix-log-read-access",
     version=__version__,
-    description="This plugin logs any access to extended information (e.g. question answers) of a specific order, as well as all export jobs. No warranty for completeness given.",
+    description="This plugin logs any access to extended information (e.g. question answers) of a specific order, "
+                "as well as all export jobs. No warranty for completeness given.",
     long_description=long_description,
     url="https://github.com/pretix-unofficial/pretix-log-read-access",
     author="pretix team",
